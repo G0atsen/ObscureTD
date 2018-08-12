@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-
 public class PlayerControllerScript : MonoBehaviour
 {
     private Rigidbody rb;
@@ -29,7 +28,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     // raycast for ground stuff
     private int groundedLayer;
-    [SerializeField] private float groundRayLength; //length of ray going to ground
+    [SerializeField] private float groundRayLength = 0.7f; //length of ray going to ground
     [SerializeField] private bool isGrounded = false;
 
     // third person camera stuff
@@ -38,12 +37,13 @@ public class PlayerControllerScript : MonoBehaviour
     [SerializeField] private float widthOffset = 5.0f;
     private float mouseX = 0.0f;
     private float mouseY = 0.0f;
-    private float rbY = 0.0f;
+    //private float rbY = 0.0f;
     private float camY;
     private Camera cam;
     private Transform camTransform;
     private const float MAX_Y = 30f;
     private const float MIN_Y = -5f;
+    private GameObject pivot;
 
 
 
@@ -55,6 +55,7 @@ public class PlayerControllerScript : MonoBehaviour
         groundedLayer = 1 << 9;
         cam = Camera.main;
         camTransform = cam.transform;
+        pivot = GameObject.FindGameObjectWithTag("pivot");
     }
     
 
@@ -73,7 +74,7 @@ public class PlayerControllerScript : MonoBehaviour
     private void PlayerRotation()
     {
         mouseX += Input.GetAxis("Mouse X");
-        mouseY += Input.GetAxis("Mouse Y");
+        mouseY -= Input.GetAxis("Mouse Y");
         mouseY = Mathf.Clamp(mouseY, MIN_Y, MAX_Y);
         Quaternion rotation = Quaternion.Euler(0, mouseX, 0);
         transform.rotation = rotation;
@@ -84,8 +85,9 @@ public class PlayerControllerScript : MonoBehaviour
         Vector3 cameraNewRot = new Vector3(widthOffset, heightOffset, -distanceOffset);
         //Vector3 cameraNewPos = new Vector3(widthOffset, heightOffset, -distanceOffset);
         Quaternion rotation = Quaternion.Euler(mouseY, mouseX, 0);
-        cam.transform.position = transform.position + rotation * cameraNewRot;
-        cam.transform.LookAt(transform);
+        cam.transform.position = pivot.transform.position + rotation * cameraNewRot;
+        cam.transform.forward = pivot.transform.forward;
+        cam.transform.LookAt(pivot.transform);
     }
 
     private void Movement(bool isGrounded)
@@ -128,8 +130,7 @@ public class PlayerControllerScript : MonoBehaviour
 
     private bool CheckGround()
     {
-        Debug.DrawRay(transform.position, -transform.up * groundRayLength, Color.cyan);
-        RaycastHit hit;
+        Debug.DrawRay(transform.position - new Vector3(0, 0.5f, 0), -transform.up * groundRayLength, Color.cyan);
         if(Physics.Raycast(transform.position - new Vector3 (0,0.5f,0) , -transform.up, groundRayLength, groundedLayer))
         {
             return true;
@@ -172,5 +173,6 @@ public class PlayerControllerScript : MonoBehaviour
     void LateUpdate()
     {
         CameraRotation();
+        pivot.transform.forward = transform.forward;
     }
 }
