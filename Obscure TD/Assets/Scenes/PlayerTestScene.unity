@@ -706,18 +706,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784dd20d883b16f4a96d11174afd38e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 200
-  jumpForce: 300
+  moveSpeed: 12
+  runSpeed: 20
+  jumpForce: 200
   moveLeft: 97
   moveRight: 100
   moveForward: 119
   moveBackward: 115
   jump: 32
+  sprintKey: 304
   groundRayLength: 0.7
   isGrounded: 0
   distanceOffset: 2
   heightOffset: 0.1
   widthOffset: 0
+  cameraRayLength: 5.39
 --- !u!1 &1930876222
 GameObject:
   m_ObjectHideFlags: 0

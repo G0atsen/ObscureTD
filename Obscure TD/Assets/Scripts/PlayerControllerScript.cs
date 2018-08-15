@@ -12,8 +12,10 @@ public class PlayerControllerScript : MonoBehaviour
     private Rigidbody rb;
 
     // move, jump stuff
-    [SerializeField] private float moveSpeed = 5.0f;
+    [SerializeField] private float moveSpeed = 12f;
+    [SerializeField] private float runSpeed = 20f;
     [SerializeField] private float jumpForce = 5.0f;
+    private float intialMoveSpeed;
 
 
     // variable control
@@ -22,6 +24,7 @@ public class PlayerControllerScript : MonoBehaviour
     [SerializeField] private KeyCode moveForward = KeyCode.W;
     [SerializeField] private KeyCode moveBackward = KeyCode.S;
     [SerializeField] private KeyCode jump = KeyCode.Space;
+    [SerializeField] private KeyCode sprintKey = KeyCode.LeftShift;
     private Vector3 moveDirection;
     private float moveHorizontal;
     private float moveVertical;
@@ -45,11 +48,15 @@ public class PlayerControllerScript : MonoBehaviour
     private const float MIN_Y = -5f;
     private GameObject pivot;
 
+    // UI visualisation things
+    [SerializeField] private float cameraRayLength = 1f;
+
 
 
     // Use this for initialization
     void Start ()
     {
+        intialMoveSpeed = moveSpeed;
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
         groundedLayer = 1 << 9;
@@ -63,7 +70,6 @@ public class PlayerControllerScript : MonoBehaviour
     private void PlayerInput()
     {
         Movement(isGrounded);
-        //StrafeMovement(isGrounded);
         Jump();
         PlayerRotation();
         
@@ -88,6 +94,10 @@ public class PlayerControllerScript : MonoBehaviour
         cam.transform.position = pivot.transform.position + rotation * cameraNewRot;
         cam.transform.forward = pivot.transform.forward;
         cam.transform.LookAt(pivot.transform);
+        pivot.transform.forward = transform.forward;
+
+        //
+        Debug.DrawRay(cam.transform.position, cam.transform.forward * cameraRayLength, Color.red);
     }
 
     private void Movement(bool isGrounded)
@@ -98,19 +108,30 @@ public class PlayerControllerScript : MonoBehaviour
             // basic movement
             if (Input.GetKey(moveForward))
             {
-                rb.velocity = transform.forward * moveSpeed * Time.deltaTime;
+                rb.velocity += transform.forward * moveSpeed * Time.deltaTime;
             }
             if (Input.GetKey(moveLeft))
             {
-                rb.velocity = -transform.right * moveSpeed * Time.deltaTime; 
+                rb.velocity += -transform.right * moveSpeed * Time.deltaTime; 
             }
             if (Input.GetKey(moveRight))
             {
-                rb.velocity = transform.right * moveSpeed * Time.deltaTime;
+                rb.velocity += transform.right * moveSpeed * Time.deltaTime;
             }
             if (Input.GetKey(moveBackward))
             {
-                rb.velocity = -transform.forward * moveSpeed * Time.deltaTime;
+                rb.velocity += -transform.forward * moveSpeed * Time.deltaTime;
+            }
+
+            // running
+
+            if (Input.GetKey(moveForward) && Input.GetKey(sprintKey))
+            {
+                moveSpeed = runSpeed;
+            }
+            else
+            {
+                moveSpeed = intialMoveSpeed;
             }
 
         }
@@ -121,8 +142,8 @@ public class PlayerControllerScript : MonoBehaviour
         // jump
         if (Input.GetKeyDown(jump) && isGrounded)
         {
-            //rb.velocity = new Vector3(rb.velocity.x, jumpForce * Time.deltaTime, rb.velocity.z);
-            rb.AddForce(new Vector3(0,1,0) * jumpForce);
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce * Time.deltaTime, rb.velocity.z);
+            //rb.AddForce(new Vector3(0,1,0) * jumpForce);
             Debug.Log("Jumped");
         }
         
@@ -137,8 +158,11 @@ public class PlayerControllerScript : MonoBehaviour
         }
         return false;
     }
-
-    private void StrafeMovement(bool isGrounded)
+    /// <summary>
+    /// Legacy function, entirely obsolete keeping it for what NOT to do
+    /// </summary>
+    /// <param name="isGrounded"></param>
+    /*private void StrafeMovement(bool isGrounded)
     {   
         // cut movement if theyre in air
         if (isGrounded)
@@ -161,7 +185,7 @@ public class PlayerControllerScript : MonoBehaviour
                 rb.velocity = new Vector3(1 * (moveSpeed - moveSpeed / 2) * Time.deltaTime, rb.velocity.y, -1 * (moveSpeed - moveSpeed / 2) * Time.deltaTime);
             }
         }
-    }
+    }*/
 	
 	// Update is called once per frame
 	void Update ()
@@ -173,6 +197,6 @@ public class PlayerControllerScript : MonoBehaviour
     void LateUpdate()
     {
         CameraRotation();
-        pivot.transform.forward = transform.forward;
+        
     }
 }
