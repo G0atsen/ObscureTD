@@ -44,18 +44,24 @@ public class PlayerControllerScript : MonoBehaviour
     private float camY;
     private Camera cam;
     private Transform camTransform;
-    private const float MAX_Y = 30f;
-    private const float MIN_Y = -5f;
+    [SerializeField] private float MAX_Y = 30f;
+    [SerializeField] private float MIN_Y = -5f;
     private GameObject pivot;
 
     // UI visualisation things
     [SerializeField] private float cameraRayLength = 1f;
+    [SerializeField] private GameObject crosshair;
+
+    // Beginning the implementation of the objects
+    [SerializeField] private bool canBuild;
+    private itemPlacer ip;
 
 
 
     // Use this for initialization
     void Start ()
     {
+        canBuild = true;
         intialMoveSpeed = moveSpeed;
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
@@ -63,6 +69,7 @@ public class PlayerControllerScript : MonoBehaviour
         cam = Camera.main;
         camTransform = cam.transform;
         pivot = GameObject.FindGameObjectWithTag("pivot");
+        ip = FindObjectOfType<itemPlacer>();
     }
     
 
@@ -72,6 +79,8 @@ public class PlayerControllerScript : MonoBehaviour
         Movement(isGrounded);
         Jump();
         PlayerRotation();
+        Build(canBuild);
+        Cursor.visible = false;
         
 
     }
@@ -86,6 +95,7 @@ public class PlayerControllerScript : MonoBehaviour
         transform.rotation = rotation;
     }
 
+    // Needs commenting and cleaning up*
     private void CameraRotation()
     {
         Vector3 cameraNewRot = new Vector3(widthOffset, heightOffset, -distanceOffset);
@@ -98,6 +108,7 @@ public class PlayerControllerScript : MonoBehaviour
 
         //
         Debug.DrawRay(cam.transform.position, cam.transform.forward * cameraRayLength, Color.red);
+
     }
 
     private void Movement(bool isGrounded)
@@ -158,6 +169,43 @@ public class PlayerControllerScript : MonoBehaviour
         }
         return false;
     }
+
+    private void ToggleCrossHair(bool inRange)
+    {
+        if (inRange)
+        {
+            crosshair.SetActive(inRange);
+        }
+        else
+        {
+            crosshair.SetActive(inRange);
+        }
+    }
+
+    private void Build(bool canBuild)
+    {
+        if (canBuild)
+        {
+            RaycastHit hitInfo;
+
+            print("click");
+            if (Physics.Raycast(camTransform.position, camTransform.forward, out hitInfo, cameraRayLength, groundedLayer))
+            {
+                ToggleCrossHair(true);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    ip.PlaceCubeNear(hitInfo.point);
+                    print(hitInfo.point);
+                    ip.tilesCreated += 1;
+                }
+            }
+            else
+            {
+                ToggleCrossHair(false);
+            }
+            
+        }
+    }
     /// <summary>
     /// Legacy function, entirely obsolete keeping it for what NOT to do
     /// </summary>
@@ -192,6 +240,11 @@ public class PlayerControllerScript : MonoBehaviour
     {
         PlayerInput();
         isGrounded = CheckGround();
+        // quick test in build
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
 	}
 
     void LateUpdate()

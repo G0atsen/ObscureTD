@@ -17,7 +17,10 @@ public class itemPlacer : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        /* Removed to test player controller
+         * 
+         * 
+         * if (Input.GetMouseButtonDown(0))
         {
             print("stareted");
             RaycastHit hitInfo;
@@ -30,10 +33,10 @@ public class itemPlacer : MonoBehaviour {
             }
             print(hitInfo.point);
             tilesCreated += 1;
-        }
+        }*/
     }
 
-    private void PlaceCubeNear(Vector3 clickPoint)
+    public void PlaceCubeNear(Vector3 clickPoint)
     {
         var finalPosition = grid.GetNearestPointOnGrid(clickPoint);
         var clone = Instantiate(tilePrefab, finalPosition,Quaternion.identity);
