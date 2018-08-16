@@ -270,7 +270,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 343550096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.03, y: 0.5, z: 4.5}
+  m_LocalPosition: {x: -6.86, y: 0.5, z: 6.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -290,7 +290,9 @@ MonoBehaviour:
   Damage:
     BaseValue: 2
   Speed:
-    BaseValue: 0
+    BaseValue: 2
+  Range:
+    BaseValue: 2
 --- !u!1 &588962980
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +392,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 588962980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.25, z: 0.5}
+  m_LocalPosition: {x: -3.47, y: 0.25, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

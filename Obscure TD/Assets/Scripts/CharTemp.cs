@@ -5,6 +5,7 @@ using Keith.EnemyStats;
 public class CharTemp : MonoBehaviour {
     public EnemyStats Damage;
     public EnemyStats Speed;
+    public EnemyStats Range;
     // Use this for initialization
     void Start () {
 		
