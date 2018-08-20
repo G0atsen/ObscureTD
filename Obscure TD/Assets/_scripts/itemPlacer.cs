@@ -22,16 +22,13 @@ public class itemPlacer : MonoBehaviour {
          * 
          * if (Input.GetMouseButtonDown(0))
         {
-            print("stareted");
             RaycastHit hitInfo;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            print("click");
             if (Physics.Raycast(ray, out hitInfo))
             {
                 PlaceCubeNear(hitInfo.point);
             }
-            print(hitInfo.point);
             tilesCreated += 1;
         }*/
     }
