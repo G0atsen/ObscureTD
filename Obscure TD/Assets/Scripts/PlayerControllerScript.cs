@@ -70,6 +70,7 @@ public class PlayerControllerScript : MonoBehaviour
         camTransform = cam.transform;
         pivot = GameObject.FindGameObjectWithTag("pivot");
         ip = FindObjectOfType<itemPlacer>();
+        crosshair = GameObject.Find("Cross Hair");
     }
     
 
