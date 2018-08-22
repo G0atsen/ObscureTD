@@ -52,7 +52,6 @@ namespace Keith.EnemyStats {
             if (statModifiers.Remove(mod)) {
                 isDirty = true;
                 return isDirty;
-            
             }
             return false;
         }
