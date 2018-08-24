@@ -19,7 +19,7 @@ namespace ObscureTD.Towers
         [SerializeField] protected float BaseFireRate;
         [SerializeField] protected float Range;
         [SerializeField] protected TowerType TypeOfTower;
-        [SerializeField] protected LayerMask layer;
+        [SerializeField] protected LayerMask TargetLayer;
         // Element * this would be a EnemyStats?
         protected GameObject NearestEnemy;
         protected SphereCollider sphereCollider;
@@ -28,6 +28,7 @@ namespace ObscureTD.Towers
         {
             sphereCollider = GetComponent<SphereCollider>();
             sphereCollider.isTrigger = true;
+            Range = sphereCollider.radius;
         }
 
         // Constructor 
@@ -73,15 +74,21 @@ namespace ObscureTD.Towers
             foreach (Collider enemy in enemies)
             {
                 // aoe
+                /* Currently we would need to get the related EnemyScript
+                 * tell it that it would take its health and minus the damage from it
+                 * requires the enemy script to start being done imo
+                 * but each enemy.gameobject.getcomponent<enemyAI>.health thing would need to be told
+                 */
             }
         }
 
     
 
-
+        // Currently this creates and passes the new array to the function every time theres a new enemy
+        // not sure about performance at this current time
         protected void OnTriggerEnter(Collider other)
         {
-            Collider[] enemies = Physics.OverlapSphere(transform.position, Range, layer);
+            Collider[] enemies = Physics.OverlapSphere(transform.position, Range, TargetLayer);
             NearestEnemy = GetClosetEnemy(enemies);
         }
 

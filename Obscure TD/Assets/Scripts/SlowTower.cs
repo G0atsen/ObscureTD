@@ -14,7 +14,7 @@ namespace ObscureTD.Towers
         {
             if (Input.GetKeyDown(KeyCode.T))
             {
-                Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, Range, layer);
+                Collider[] nearbyEnemies = Physics.OverlapSphere(transform.position, Range, TargetLayer);
                 NearestEnemy = GetClosetEnemy(nearbyEnemies);
                 Debug.Log("T pressed");
             }
