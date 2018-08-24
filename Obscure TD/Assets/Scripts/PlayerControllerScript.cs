@@ -189,7 +189,6 @@ public class PlayerControllerScript : MonoBehaviour
         {
             RaycastHit hitInfo;
 
-            print("click");
             if (Physics.Raycast(camTransform.position, camTransform.forward, out hitInfo, cameraRayLength, groundedLayer))
             {
                 ToggleCrossHair(true);
