@@ -135,6 +135,14 @@ public class PlayerControllerScript : MonoBehaviour
                 rb.velocity += -transform.forward * moveSpeed * Time.deltaTime;
             }
 
+
+            if (rb.velocity.x  > 10 && Input.GetKey(sprintKey))
+            {
+
+            }
+
+          
+
             // running
 
             if (Input.GetKey(moveForward) && Input.GetKey(sprintKey))
@@ -155,7 +163,7 @@ public class PlayerControllerScript : MonoBehaviour
         if (Input.GetKeyDown(jump) && isGrounded)
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpForce * Time.deltaTime, rb.velocity.z);
-            //rb.AddForce(new Vector3(0,1,0) * jumpForce);
+            //rb.AddForce(transform.up * jumpForce);
             Debug.Log("Jumped");
         }
         
@@ -195,7 +203,7 @@ public class PlayerControllerScript : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     ip.PlaceCubeNear(hitInfo.point);
-                    print(hitInfo.point);
+                    //print(hitInfo.point);
                     ip.tilesCreated += 1;
                 }
             }

@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 1072307743}
   - component: {fileID: 1072307747}
   - component: {fileID: 1072307748}
+  m_Layer: 10
   m_Name: AOE Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
