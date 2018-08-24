@@ -17,10 +17,7 @@ public class itemPlacer : MonoBehaviour {
 
     private void Update()
     {
-        /* Removed to test player controller
-         * 
-         * 
-         * if (Input.GetMouseButtonDown(0))
+         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hitInfo;
 
@@ -30,7 +27,7 @@ public class itemPlacer : MonoBehaviour {
                 PlaceCubeNear(hitInfo.point);
             }
             tilesCreated += 1;
-        }*/
+        }
     }
 
     public void PlaceCubeNear(Vector3 clickPoint)
