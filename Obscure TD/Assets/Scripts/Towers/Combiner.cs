@@ -7,7 +7,7 @@ using System;
 public struct NumberOfTowers{
     public Tower Tower;
     [Range(1,5)]
-    public int number;
+    public int Number;
 }
 
 [CreateAssetMenu]
@@ -15,5 +15,30 @@ public class Combiner : ScriptableObject {
     public List<NumberOfTowers> components;
     public List<NumberOfTowers> output;
 
+    public bool CanCraft(iTowerController towerContainer) {
+        foreach (NumberOfTowers number in components) {
+            if (towerContainer.TowerCount(number.Tower) < number.Number)
+                return false;
+        }
+        return true;
+    }
+
+    public void Craft(iTowerController towerContainer) {
+        if (CanCraft(towerContainer)) {
+            foreach (NumberOfTowers number in components) {
+                for (int i = 0; i < number.Number; i++)
+                {
+                    towerContainer.RemoveTower(number.Tower);
+                }
+            }
+
+            foreach(NumberOfTowers number in output) {
+                for (int i = 0; i < number.Number; i++)
+                {
+                    towerContainer.AddTower(number.Tower);
+                }
+            }
+        }
+    }
 
 }

@@ -6,8 +6,8 @@ using UnityEngine;
 /// This is the regular projectile launching tower, we could add a crit chance using the procChance and powerCooldown
 /// I've not yet implemented any kind of attributes with regards to 'type' or w/e we use, we can do that later using the cool stats system (thx russian)
 /// </summary>
-public class DirectTower : Tower {
-    
+public class DirectTower : MonoBehaviour {
+    /*
 	// Use this for initialization
 	void Start () {
 
@@ -30,4 +30,5 @@ public class DirectTower : Tower {
 	void Update () {
 		
 	}
+    */
 }

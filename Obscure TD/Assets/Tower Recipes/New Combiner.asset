@@ -11,5 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449c4ef7ae92f8640969d0b7c5f0df2a, type: 3}
   m_Name: New Combiner
   m_EditorClassIdentifier: 
-  components: []
+  components:
+  - Tower: {fileID: 0}
+    Number: 0
+  - Tower: {fileID: 0}
+    Number: 0
   output: []

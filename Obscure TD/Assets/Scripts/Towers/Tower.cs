@@ -4,16 +4,16 @@ using UnityEngine;
 using System.Linq;
 using Keith.Towers;
 
-public abstract class Tower : MonoBehaviour {
+[CreateAssetMenu]
+public class Tower : ScriptableObject {
 
+    public string TowerName;
     public TowerStats Damage;
     public TowerStats FireRate;
     public TowerStats Range;
     public TowerStats PowerCooldown;
     public TowerStats ProcChance;
     public LayerMask targetableLayers;
-
-    protected abstract void Attack();
 
     public enum TargetType
     {
@@ -23,25 +23,12 @@ public abstract class Tower : MonoBehaviour {
         Around,
         Multi,
     }
-
-    public Tower() {
-        
-    }
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    void OnDrawGizmosSelected()
+   
+    /*void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(transform.position, Range.BaseValue);
-    }
+    }*/
 
     /*----------------------- UTILITY FUNCTIONS FOR ALL TOWERS -----------------------*/
 
