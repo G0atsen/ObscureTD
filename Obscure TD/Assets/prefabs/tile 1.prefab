@@ -110,5 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avoid:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
   around: 00000000
+  corner: {fileID: 1581904369085294, guid: e990a2f11e57db940bee1afea0908891, type: 2}
+  terminate: {fileID: 1503393580201888, guid: 8e7d26d96ce043041856231ad770e0b4, type: 2}
+  cornerHolder: {fileID: 0}
