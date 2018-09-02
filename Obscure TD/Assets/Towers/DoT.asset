@@ -9,25 +9,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf5e1f7963a33c749806cc9994f56e41, type: 3}
-  m_Name: DirectDamage
+  m_Name: DoT
   m_EditorClassIdentifier: 
-  id: d208f1e5462fa284ab04f6906ab1f295
-  TowerName: Direct Damage
+  TowerName: DoT
   Damage:
-    BaseValue: 0
+    BaseValue: 1
   FireRate:
-    BaseValue: 0
+    BaseValue: 1
   Range:
-    BaseValue: 0
+    BaseValue: 1
   PowerCooldown:
-    BaseValue: 0
+    BaseValue: 1
   ProcChance:
     BaseValue: 0
   targetableLayers:
     serializedVersion: 2
     m_Bits: 2048
   prefab: {fileID: 0}
-  targettype: 3
-  TargetTower: {fileID: 0}
-  AestheticMesh: {fileID: 1146754894129762, guid: 2130ba5512672ba4ebc8201a29d84093,
-    type: 2}
+  targettype: 0

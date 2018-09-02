@@ -17,7 +17,7 @@ public class Combiner : ScriptableObject {
 
     public bool CanCraft(iTowerController towerContainer) {
         foreach (NumberOfTowers number in components) {
-            if (towerContainer.TowerCount(number.Tower) < number.Number)
+            if (towerContainer.TowerCount(number.Tower.ID) < number.Number)
                 return false;
         }
         return true;
@@ -28,7 +28,7 @@ public class Combiner : ScriptableObject {
             foreach (NumberOfTowers number in components) {
                 for (int i = 0; i < number.Number; i++)
                 {
-                    towerContainer.RemoveTower(number.Tower);
+                    towerContainer.RemoveTower(number.Tower.ID);
                 }
             }
 
