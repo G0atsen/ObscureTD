@@ -13,9 +13,8 @@ public class SpawnedTowers : MonoBehaviour, iTowerController {
     public bool AddTower(Tower tower) {
         if (IsFull())
             return false;
-        Tower asd = Instantiate(tower);
-        asd.name = UnityEngine.Random.Range(0f,2f).ToString();
-        spawnedTowers.Add(asd);
+        Tower t = Instantiate(tower);
+        spawnedTowers.Add(t);
         return true;
     }
 

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 449c4ef7ae92f8640969d0b7c5f0df2a, type: 3}
-  m_Name: New Combiner
+  m_Name: DoT
   m_EditorClassIdentifier: 
   components:
   - Tower: {fileID: 11400000, guid: d208f1e5462fa284ab04f6906ab1f295, type: 2}

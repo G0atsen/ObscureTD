@@ -7,8 +7,6 @@ using Keith.Towers;
 public class InGameTower : MonoBehaviour {
 
     public Tower tower;
-    public GameObject manager;
-    public Combiner temp;
     TowerStats damage;
     TowerStats range;
     TowerStats fireRate;
@@ -16,14 +14,14 @@ public class InGameTower : MonoBehaviour {
     TowerStats procChance;
     LayerMask targetableLayers;
     Tower.TargetType targettype;
+    List<Combiner> possibleRecipes = new List<Combiner>();
     
     private void Start()
     {
-        this.transform.position = new Vector3(0f, 0f, UnityEngine.Random.Range(0f, 10f));
-        manager.GetComponent<SpawnedTowers>().AddTower(tower);
+        //this.transform.position = new Vector3(0f, 0f, UnityEngine.Random.Range(0f, 10f));
         tower.TargetTower = this.gameObject;
-        print(tower.TargetTower.transform.position);
-        temp.Craft(manager.GetComponent<SpawnedTowers>());
+        //print(tower.TargetTower.transform.position);
+        //temp.Craft(manager.GetComponent<SpawnedTowers>());
         this.name = tower.name;
         damage = tower.Damage;
         range = tower.Range;
@@ -32,6 +30,13 @@ public class InGameTower : MonoBehaviour {
         procChance = tower.ProcChance;
         targetableLayers = tower.targetableLayers;
         targettype = tower.targettype;
+        if (tower.AestheticMesh)
+            this.GetComponent<MeshFilter>().mesh = tower.AestheticMesh.GetComponent<MeshFilter>().sharedMesh;
+    }
+
+    public void addRecipe(Combiner combiner) {
+        if (!possibleRecipes.Contains(combiner))
+            possibleRecipes.Add(combiner);
     }
 
     /*void OnDrawGizmosSelected()
