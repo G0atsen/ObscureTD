@@ -9,7 +9,9 @@ public class Enemy : MonoBehaviour {
     public EnemyStats Range;
     public EnemyStats Health;
 
-    EnemyStats MaxHealth;
+    public delegate void HealthChange();
+    public event HealthChange OnHealthChange;
+    public EnemyStats MaxHealth;
     public GameObject healthBarPrefab;
     public RectTransform healthPanelRect;
     
@@ -19,8 +21,8 @@ public class Enemy : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	public void updateHealth () {
+            OnHealthChange();
 	}
 
     void generateHealthBar() {

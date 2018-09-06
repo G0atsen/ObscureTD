@@ -144,7 +144,9 @@ MonoBehaviour:
   Range:
     BaseValue: 0
   Health:
-    BaseValue: 0
+    BaseValue: 10
+  MaxHealth:
+    BaseValue: 20
   healthBarPrefab: {fileID: 1882560787222824, guid: a1faaf50da22ac6478bf40b51bd3406d,
     type: 2}
   healthPanelRect: {fileID: 0}

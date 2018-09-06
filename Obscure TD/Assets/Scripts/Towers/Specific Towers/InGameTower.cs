@@ -7,13 +7,13 @@ using Keith.Towers;
 public class InGameTower : MonoBehaviour {
 
     public Tower tower;
-    TowerStats damage;
-    TowerStats range;
-    TowerStats fireRate;
-    TowerStats cooldown;
-    TowerStats procChance;
-    LayerMask targetableLayers;
-    Tower.TargetType targettype;
+    protected TowerStats damage;
+    protected TowerStats range;
+    protected TowerStats fireRate;
+    protected TowerStats cooldown;
+    protected TowerStats procChance;
+    protected LayerMask targetableLayers;
+    protected Tower.TargetType targettype;
     List<Combiner> possibleRecipes = new List<Combiner>();
     
     private void Start()

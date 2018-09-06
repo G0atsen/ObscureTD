@@ -13,8 +13,11 @@ public class HealthBarController : MonoBehaviour {
     public RectTransform targetCanvas;
     public RectTransform healthBar;
     public Transform objectToFollow;
+    public Enemy enemy;
     #endregion
     #region PUBLIC_METHODS
+
+
     public void SetHealthBarData(Transform targetTransform, RectTransform healthBarPanel)
     {
         this.targetCanvas = healthBarPanel;
@@ -22,16 +25,21 @@ public class HealthBarController : MonoBehaviour {
         objectToFollow = targetTransform;
         RepositionHealthBar();
         healthBar.gameObject.SetActive(true);
+        enemy = objectToFollow.GetComponent<Enemy>();
+        enemy.OnHealthChange += OnHealthChanged; //adds the event that will update the healthbar.
     }
 
     public void die()
     {
         Destroy(this.gameObject);
     }
-    public void OnHealthChanged(float healthFill)
+     void OnHealthChanged()
     {
+        print("memes");
+        float healthFill = enemy.Health.Value/enemy.MaxHealth.Value;
         healthBar.GetComponent<Image>().fillAmount = healthFill;
     }
+
     #endregion
     #region UNITY_CALLBACKS
     void Update()
