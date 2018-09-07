@@ -6,7 +6,8 @@ using System.Collections.ObjectModel;
 
 namespace Keith.EnemyStats { 
     [Serializable]
-    public class EnemyStats{
+    public class EnemyStats
+    {
         public float BaseValue;
 
         public virtual float Value {
@@ -52,7 +53,6 @@ namespace Keith.EnemyStats {
             if (statModifiers.Remove(mod)) {
                 isDirty = true;
                 return isDirty;
-            
             }
             return false;
         }
