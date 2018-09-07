@@ -8,7 +8,8 @@ public class itemPlacer : MonoBehaviour {
      public Camera cam;
     public GameObject tilePrefab;
     public int tilesCreated;
-
+    public LayerMask wallLayer;
+    public LayerMask floorLayer;
 
     private void Awake()
     {
@@ -17,20 +18,29 @@ public class itemPlacer : MonoBehaviour {
 
     private void Update()
     {
-        /* Removed to test player controller
-         * 
-         * 
-         * if (Input.GetMouseButtonDown(0))
+         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hitInfo;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hitInfo))
+            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, floorLayer))
             {
                 PlaceCubeNear(hitInfo.point);
             }
             tilesCreated += 1;
-        }*/
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            RaycastHit hitInfo;
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity,wallLayer))
+            {
+                hitInfo.collider.GetComponent<AdaptiveWall>().killWall();
+            }
+            tilesCreated += 1;
+        }
     }
 
     public void PlaceCubeNear(Vector3 clickPoint)
