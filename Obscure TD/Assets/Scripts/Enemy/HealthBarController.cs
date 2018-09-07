@@ -35,7 +35,7 @@ public class HealthBarController : MonoBehaviour {
     }
      void OnHealthChanged()
     {
-        print("memes");
+        print(enemy.Health.Value);
         float healthFill = enemy.Health.Value/enemy.MaxHealth.Value;
         healthBar.GetComponent<Image>().fillAmount = healthFill;
     }

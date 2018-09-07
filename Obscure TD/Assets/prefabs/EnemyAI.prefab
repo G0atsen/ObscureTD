@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114054580456099356}
   - component: {fileID: 143078775581192938}
   - component: {fileID: 114146775968861410}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EnemyAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,9 +144,9 @@ MonoBehaviour:
   Range:
     BaseValue: 0
   Health:
-    BaseValue: 10
+    BaseValue: 100
   MaxHealth:
-    BaseValue: 20
+    BaseValue: 100
   healthBarPrefab: {fileID: 1882560787222824, guid: a1faaf50da22ac6478bf40b51bd3406d,
     type: 2}
   healthPanelRect: {fileID: 0}

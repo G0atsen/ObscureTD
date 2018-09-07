@@ -29,7 +29,6 @@ public class CharacterManager : MonoBehaviour {
     private void Awake()
     {
         OnValidate();
-        build();
     }
 
     private void Update()
@@ -74,7 +73,7 @@ public class CharacterManager : MonoBehaviour {
          cumulativeWeight += towers[chosenIndex].weight;
       }
         // Spawn the chosen item.
-        GameObject tower =  Instantiate(towerBase, transform.position, transform.rotation);
+        GameObject tower =  Instantiate(towers[chosenIndex].tower.prefab, Vector3.up, transform.rotation);
         Tower SOTower = Instantiate(towers[chosenIndex].tower);
         tower.GetComponent<InGameTower>().tower = SOTower;
         Inventory.AddTower(tower.GetComponent<InGameTower>().tower);

@@ -21,11 +21,13 @@ public class Tower : ScriptableObject {
     public TargetType targettype;
     public GameObject TargetTower = null;
     public GameObject AestheticMesh;
+    public MonoBehaviour TowerBehavior;
 
     private void OnValidate() {
         string path = AssetDatabase.GetAssetPath(this);
         id = AssetDatabase.AssetPathToGUID(path);
     }
+
     public enum TargetType
     {
         Closest,

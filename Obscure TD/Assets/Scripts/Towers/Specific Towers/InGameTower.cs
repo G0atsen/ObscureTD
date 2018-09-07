@@ -32,6 +32,7 @@ public class InGameTower : MonoBehaviour {
         targettype = tower.targettype;
         if (tower.AestheticMesh)
             this.GetComponent<MeshFilter>().mesh = tower.AestheticMesh.GetComponent<MeshFilter>().sharedMesh;
+        print(fireRate.Value);
     }
 
     public void addRecipe(Combiner combiner) {
