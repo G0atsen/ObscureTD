@@ -31,6 +31,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+
 --- !u!1 &1596371780011512
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,6 +48,7 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4391449605284126
+
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,6 +133,7 @@ Rigidbody:
   m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!114 &114345772590361676
+
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
